@@ -43,7 +43,7 @@ const textures = [
 ]
  
 // 3Dオブジェクトを作る
-const geometry = new THREE.DodecahedronGeometry(300, 0); // DodecahedronGeometry 正十二面体（半径、詳細）
+const geometry = new THREE.SphereGeometry( 300, 32, 32 ); // DodecahedronGeometry 正十二面体（半径、詳細）
  
 // 枠線を作成
 const line = new THREE.LineSegments(

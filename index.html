@@ -1,32 +1,159 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-    <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1" />
-    <title>three.js</title>
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r127/three.min.js"></script>
-    <link href="css/style.css" rel="stylesheet" media="all">
-  </head>
- 
-  <body>
-    <section class="kv-block outer-block">
-      <!-- <h1 class="main-title">Think different.</h1> -->
-      <canvas id="canvas" class="fadeTarget"></canvas>
-      <div id="kv" class="fadeTarget"></div>
-    </section>
-    <section class="outer-block contents-block">
-      <div class="inner-block">
-        <h2 class="title">タイトルタイトルタイトルタイトルタイトル</h2>
-        <p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-        <p class="text">
-          テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-        </p>
-        <p class="text">テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト</p>
-        <p class="text">
-          テキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキストテキスト
-        </p>
-      </div>
-    </section>
-    <script type="text/javascript" src="js/common.js"></script>
-  </body>
+  <meta charset="utf-8"/>
+  <script src="https://unpkg.com/three@0.140.2/build/three.min.js"></script>
+  <script>
+
+
+// 基本
+
+    // ページの読み込みを待つ
+    // window.addEventListener('DOMContentLoaded', init);
+
+    // function init() {
+
+    //   // サイズを指定
+    //   const width = 960;
+    //   const height = 540;
+
+
+    //   // レンダラーを作成
+    //   const renderer = new THREE.WebGLRenderer({
+    //     canvas: document.querySelector('#myCanvas')
+    //   });
+    //   renderer.setPixelRatio(window.devicePixelRatio);   //canvasを綺麗に表示するための記述
+    //   renderer.setSize(width, height);                   //canvasのサイズ設定
+
+
+    //   // シーン（3Dオブジェクトや光源などの置き場）を作成
+    //   const scene = new THREE.Scene();
+
+    //   // カメラ（どの視点から空間を撮影するか）を作成
+    //   const camera = new THREE.PerspectiveCamera(45, width / height);    //45は画質でwidth/heightは縦横比
+    //   camera.position.set(0, 0, +1000);
+
+    //   // 立方体を作成、立方体はメッシュという表示オブジェクトを使用して作成する。
+    //   // メッシュを作るには、ジオメトリ(形状)とマテリアル(素材)の2種類が必要
+    //   // ジオメトリとは頂点情報や面情報を持っています。Three.jsにはさまざまなジオメトリが用意されていますが、今回は立方体や直方体のような箱状の形状を生成するためのBoxGeometryを使用します。
+    //   const geometry = new THREE.BoxGeometry(400, 400, 400);      //(400,400,400)は(横,高さ,奥行き)
+    //   // マテリアルは色や質感の情報を持っています。今回はとりあえず箱を表示させたいので、THREE.MeshNormalMaterialという適当なカラーを割り振るマテリアルを生成します。
+    //   const material = new THREE.MeshNormalMaterial();  
+    //   // 作成したジオメトリとマテリアルを使って、メッシュを作ります。作成したメッシュをシーンに追加しましょう。     
+    //   const box = new THREE.Mesh(geometry, material);
+    //   scene.add(box);
+
+
+    //   // JavaScriptでアニメーションをさせるには、時間経過で関数を呼び続ける必要があります。そのためには、requestAnimationFrame()というグローバルメソッドを使用します。requestAnimationFrame()は引数として渡された関数を、毎フレーム実行します。
+    //   tick();
+    //   function tick() {
+    //     requestAnimationFrame(tick);
+    //     // ↓にアニメーションを書くがThree.jsでは自動的に画面が最新に切り替わらないので、明示的に画面が更新されるように命令を書く必要があります。renderer.render()という命令で更新を指示できます。
+    //     box.rotation.y += 0.01;      //回転するプロパティ
+    //     renderer.render(scene, camera); 
+    //   }
+    // }
+
+
+// 立体的になる
+
+    // window.addEventListener('DOMContentLoaded', init);
+
+    // function init() {
+
+    //   const width = 960;
+    //   const height = 540;
+
+    //   const renderer = new THREE.WebGLRenderer({
+    //     canvas: document.querySelector('#myCanvas')
+    //   });
+    //   renderer.setPixelRatio(window.devicePixelRatio);   
+    //   renderer.setSize(width, height);                  
+
+    //   const scene = new THREE.Scene();
+
+    //   const camera = new THREE.PerspectiveCamera(45, width / height);    
+    //   camera.position.set(0, 0, +1000);
+
+    //   const geometry = new THREE.SphereGeometry(300, 30, 30);     
+
+    //   const material = new THREE.MeshStandardMaterial({color:0xFF0000});  
+   
+    //   const box = new THREE.Mesh(geometry, material);
+    //   scene.add(box);
+
+    //   // ライティングがないと陰影はなく画面が真っ暗となり、3Dの質感がわからない、指定した方向からライトを当てる（平行光源）
+    //   const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
+    //   directionalLight.position.set(1,1,1);
+    //   scene.add(directionalLight);
+
+    //   tick();
+    //   function tick() {
+    //     requestAnimationFrame(tick);
+    //     box.rotation.y += 0.01;      
+    //     renderer.render(scene, camera); 
+    //   }
+    // }
+
+
+
+//画像をマテリアルにする
+window.addEventListener('DOMContentLoaded', init);
+
+// サイズを指定
+const width = 960;
+const height = 540;
+
+function init() {
+  // レンダラーを作成
+  const renderer = new THREE.WebGLRenderer({
+    canvas: document.querySelector('#myCanvas')
+  });
+  renderer.setSize(width, height);
+
+  // シーンを作成
+  const scene = new THREE.Scene();
+
+  // カメラを作成
+  const camera = new THREE.PerspectiveCamera(45, width / height, 1, 10000);
+  camera.position.set(0, 0, +1000);
+
+  // 球体を作成
+  const geometry = new THREE.SphereGeometry(300, 30, 30);
+  // 画像を読み込む
+  const loader = new THREE.TextureLoader();
+  const texture = loader.load('images/img.png');
+  // マテリアルにテクスチャーを設定
+  const material = new THREE.MeshStandardMaterial({
+    map: texture
+  });
+  // メッシュを作成
+  const mesh = new THREE.Mesh(geometry, material);
+  // 3D空間にメッシュを追加
+  scene.add(mesh);
+
+  // 平行光源
+  const directionalLight = new THREE.DirectionalLight(0xFFFFFF);
+  directionalLight.position.set(1, 1, 1);
+  // シーンに追加
+  scene.add(directionalLight);
+
+  tick();
+
+  // 毎フレーム時に実行されるループイベントです
+  function tick() {
+    // メッシュを回転させる
+    mesh.rotation.y += 0.01;
+    // レンダリング
+    renderer.render(scene, camera);
+
+    requestAnimationFrame(tick);
+  }
+}
+
+  </script>
+</head>
+<body>
+  <canvas id="myCanvas"></canvas>
+</body>
 </html>
